@@ -60,9 +60,9 @@ public class SpringBootPlusGenerator {
         generatorProperties.getDataSourceConfig()
                 .setDbType(DbType.MYSQL)
                 .setUsername("root")
-                .setPassword("1234")
+                .setPassword("123456")
                 .setDriverName("com.mysql.jdbc.Driver")
-                .setUrl("jdbc:mysql://localhost:3306/junfan?useUnicode=true&characterEncoding=UTF-8&useSSL=false");
+                .setUrl("jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=UTF-8&useSSL=false");
 
         // 生成配置
         generatorProperties.getGeneratorConfig()
