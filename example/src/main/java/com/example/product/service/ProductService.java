@@ -1,9 +1,13 @@
 package com.example.product.service;
 
 import com.example.product.entity.Product;
+import com.example.product.entity.ProductCountry;
+import com.example.product.entity.ProductSell;
 import com.example.product.param.ProductPageParam;
 import io.geekidea.springbootplus.framework.common.service.BaseService;
 import io.geekidea.springbootplus.framework.core.pagination.Paging;
+
+import java.util.List;
 
 /**
  *  服务类
@@ -20,7 +24,7 @@ public interface ProductService extends BaseService<Product> {
      * @return
      * @throws Exception
      */
-    boolean saveProduct(Product product) throws Exception;
+    boolean saveProduct(Product product ,List<ProductCountry> productCountries, ProductSell productSell) throws Exception;
 
     /**
      * 修改
@@ -29,7 +33,7 @@ public interface ProductService extends BaseService<Product> {
      * @return
      * @throws Exception
      */
-    boolean updateProduct(Product product) throws Exception;
+    boolean updateProduct(Product product,List<ProductCountry> productCountries, ProductSell productSell) throws Exception;
 
     /**
      * 删除
