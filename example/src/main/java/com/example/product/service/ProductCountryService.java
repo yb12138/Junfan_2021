@@ -1,9 +1,12 @@
 package com.example.product.service;
 
+import com.example.product.entity.Product;
 import com.example.product.entity.ProductCountry;
 import com.example.product.param.ProductCountryPageParam;
 import io.geekidea.springbootplus.framework.common.service.BaseService;
 import io.geekidea.springbootplus.framework.core.pagination.Paging;
+
+import java.util.List;
 
 /**
  *  服务类
@@ -49,5 +52,14 @@ public interface ProductCountryService extends BaseService<ProductCountry> {
      * @throws Exception
      */
     Paging<ProductCountry> getProductCountryPageList(ProductCountryPageParam productCountryPageParam) throws Exception;
+
+
+
+    /*
+    * 根据id查询country列表
+    **/
+    List<ProductCountry> getCountryList(Product product);
+
+
 
 }

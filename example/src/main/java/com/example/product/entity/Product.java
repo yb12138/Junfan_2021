@@ -14,6 +14,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import io.geekidea.springbootplus.framework.core.validator.groups.Update;
 
+import java.util.List;
+
 /**
  * 
  *
@@ -137,5 +139,8 @@ public class Product extends BaseEntity {
 
     @NotNull(message = "不能为空")
     private Integer deliverytime;
+
+    private  ProductSell productSell;
+    private List<ProductCountry> countryList;
 
 }

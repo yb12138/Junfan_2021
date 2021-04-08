@@ -1,5 +1,6 @@
 package com.example.product.service.impl;
 
+import com.example.product.entity.Product;
 import com.example.product.entity.ProductCountry;
 import com.example.product.mapper.ProductCountryMapper;
 import com.example.product.service.ProductCountryService;
@@ -15,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  *  服务实现类
@@ -49,10 +52,17 @@ public class ProductCountryServiceImpl extends BaseServiceImpl<ProductCountryMap
 
     @Override
     public Paging<ProductCountry> getProductCountryPageList(ProductCountryPageParam productCountryPageParam) throws Exception {
-        Page<ProductCountry> page = new PageInfo<>(productCountryPageParam, OrderItem.desc(getLambdaColumn(ProductCountry::getCreateTime)));
+        Page<ProductCountry> page = new PageInfo<>(productCountryPageParam);
         LambdaQueryWrapper<ProductCountry> wrapper = new LambdaQueryWrapper<>();
         IPage<ProductCountry> iPage = productCountryMapper.selectPage(page, wrapper);
         return new Paging<ProductCountry>(iPage);
+    }
+
+    @Override
+    public List<ProductCountry> getCountryList(Product product) {
+        int pid = product.getProductID();
+        List<ProductCountry> plist = (List<ProductCountry>) super.getById(pid);
+        return plist;
     }
 
 }

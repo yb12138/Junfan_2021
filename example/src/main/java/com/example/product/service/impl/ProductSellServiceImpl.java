@@ -49,7 +49,7 @@ public class ProductSellServiceImpl extends BaseServiceImpl<ProductSellMapper, P
 
     @Override
     public Paging<ProductSell> getProductSellPageList(ProductSellPageParam productSellPageParam) throws Exception {
-        Page<ProductSell> page = new PageInfo<>(productSellPageParam, OrderItem.desc(getLambdaColumn(ProductSell::getCreateTime)));
+        Page<ProductSell> page = new PageInfo<>(productSellPageParam);
         LambdaQueryWrapper<ProductSell> wrapper = new LambdaQueryWrapper<>();
         IPage<ProductSell> iPage = productSellMapper.selectPage(page, wrapper);
         return new Paging<ProductSell>(iPage);
