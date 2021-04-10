@@ -20,4 +20,7 @@ import io.geekidea.springbootplus.framework.core.pagination.BasePageOrderParam;
 @ApiModel(value = "分页参数")
 public class ProductPageParam extends BasePageOrderParam {
     private static final long serialVersionUID = 1L;
+    private  String sku;
+    private  String name;
+    private Long warehouseid;
 }
