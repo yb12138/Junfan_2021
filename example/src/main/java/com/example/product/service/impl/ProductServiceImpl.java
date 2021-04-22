@@ -53,7 +53,6 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductMapper, Product> 
         quesku = quesku.eq("skuCode",sku);
         Product temp = productMapper.selectOne(quesku);
         Integer id = temp.getProductID();
-
         for(ProductCountry productCountry : productCountries) {
             productCountry.setProductid(id);
             productCountryMapper.insert(productCountry);
