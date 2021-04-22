@@ -18,50 +18,29 @@ import io.geekidea.springbootplus.framework.core.validator.groups.Update;
  * 
  *
  * @author yb
- * @since 2021-04-05
+ * @since 2021-04-14
  */
 @Data
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "ProductCountry对象")
-public class ProductCountry extends BaseEntity {
+@ApiModel(value = "Warehouse对象")
+public class Warehouse extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    @NotNull(message = "pcID不能为空", groups = {Update.class})
-    @TableId(value = "pcID", type = IdType.AUTO)
-    private Integer pcid;
-
     @NotNull(message = "不能为空")
-    @TableField("productID")
-    private Integer productid;
+    @TableId(value = "WarehouseID", type = IdType.AUTO)
+    private Long warehouseid;
 
     @NotBlank(message = "不能为空")
-    @TableField("countryCode")
-    private String countrycode;
+    @TableField("WarehouseCode")
+    private String warehousecode;
 
-    private Double productlength;
+    @NotBlank(message = "不能为空")
+    @TableField("WarehouseName")
+    private String warehousename;
 
-    private Double productwidth;
-
-    private Double productheight;
-
-    @TableField("importPrice")
-    private Double importprice;
-
-    @TableField("exportPrice")
-    private Double exportprice;
-
-    private Double volume;
-
-    private Double weight;
-
-    @TableField("isNew")
-    private String isnew;
-
-    @TableField("rebateRate")
-    private Double rebaterate;
-
-    @TableField("importRate")
-    private Double importrate;
+    @NotNull(message = "不能为空")
+    @TableField("WarehouseType")
+    private Integer warehousetype;
 
 }

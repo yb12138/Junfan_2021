@@ -52,7 +52,7 @@ public class SpringBootPlusGenerator {
                 .setFileOverride(true);
 
         // 设置表信息
-        generatorProperties.addTable("product_sell","id");
+        generatorProperties.addTable("productgroup","id");
         // 设置表前缀
         // generatorProperties.setTablePrefix(Arrays.asList("tb_"));
 
@@ -62,7 +62,7 @@ public class SpringBootPlusGenerator {
                 .setUsername("root")
                 .setPassword("123456")
                 .setDriverName("com.mysql.jdbc.Driver")
-                .setUrl("jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=UTF-8&useSSL=false");
+                .setUrl("jdbc:mysql://localhost:3306/spring_boot_plus?useUnicode=true&characterEncoding=UTF-8&useSSL=false");
 
         // 生成配置
         generatorProperties.getGeneratorConfig()
@@ -90,8 +90,8 @@ public class SpringBootPlusGenerator {
 
         // 策略配置
         generatorProperties.getMybatisPlusGeneratorConfig().getStrategyConfig()
-                .setNaming(NamingStrategy.underline_to_camel)
-                .setColumnNaming(NamingStrategy.underline_to_camel)
+                .setNaming(NamingStrategy.no_change)
+                .setColumnNaming(NamingStrategy.no_change)
                 .setEntityLombokModel(true)
                 .setRestControllerStyle(true)
                 .setControllerMappingHyphenStyle(true)

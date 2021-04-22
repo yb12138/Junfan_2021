@@ -1,9 +1,9 @@
 package com.example.product.controller;
 
-import com.example.product.entity.ProductCountry;
-import com.example.product.service.ProductCountryService;
+import com.example.product.entity.Productgroup;
+import com.example.product.service.ProductgroupService;
 import lombok.extern.slf4j.Slf4j;
-import com.example.product.param.ProductCountryPageParam;
+import com.example.product.param.ProductgroupPageParam;
 import io.geekidea.springbootplus.framework.common.controller.BaseController;
 import io.geekidea.springbootplus.framework.common.api.ApiResult;
 import io.geekidea.springbootplus.framework.core.pagination.Paging;
@@ -19,21 +19,23 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  *  控制器
  *
  * @author yb
- * @since 2021-04-05
+ * @since 2021-04-16
  */
 @Slf4j
 @RestController
-@RequestMapping("/productCountry")
+@RequestMapping("/productgroup")
 @Module("product")
 @Api(value = "API", tags = {""})
-public class ProductCountryController extends BaseController {
+public class ProductgroupController extends BaseController {
 
     @Autowired
-    private ProductCountryService productCountryService;
+    private ProductgroupService productgroupService;
 
     /**
      * 添加
@@ -41,8 +43,8 @@ public class ProductCountryController extends BaseController {
     @PostMapping("/add")
     @OperationLog(name = "添加", type = OperationLogType.ADD)
     @ApiOperation(value = "添加", response = ApiResult.class)
-    public ApiResult<Boolean> addProductCountry(@Validated(Add.class) @RequestBody ProductCountry productCountry) throws Exception {
-        boolean flag = productCountryService.saveProductCountry(productCountry);
+    public ApiResult<Boolean> addProductgroup(@Validated(Add.class) @RequestBody Productgroup productgroup) throws Exception {
+        boolean flag = productgroupService.saveProductgroup(productgroup);
         return ApiResult.result(flag);
     }
 
@@ -52,19 +54,19 @@ public class ProductCountryController extends BaseController {
     @PostMapping("/update")
     @OperationLog(name = "修改", type = OperationLogType.UPDATE)
     @ApiOperation(value = "修改", response = ApiResult.class)
-    public ApiResult<Boolean> updateProductCountry(@Validated(Update.class) @RequestBody ProductCountry productCountry) throws Exception {
-        boolean flag = productCountryService.updateProductCountry(productCountry);
+    public ApiResult<Boolean> updateProductgroup(@Validated(Update.class) @RequestBody Productgroup productgroup) throws Exception {
+        boolean flag = productgroupService.updateProductgroup(productgroup);
         return ApiResult.result(flag);
     }
 
     /**
      * 删除
      */
-    @GetMapping("/delete")
+    @PostMapping("/delete/{id}")
     @OperationLog(name = "删除", type = OperationLogType.DELETE)
     @ApiOperation(value = "删除", response = ApiResult.class)
-    public ApiResult<Boolean> deleteProductCountry(@RequestParam("productID") Long id) throws Exception {
-        boolean flag = productCountryService.deleteProductCountry(id);
+    public ApiResult<Boolean> deleteProductgroup(@PathVariable("id") Long id) throws Exception {
+        boolean flag = productgroupService.deleteProductgroup(id);
         return ApiResult.result(flag);
     }
 
@@ -73,10 +75,10 @@ public class ProductCountryController extends BaseController {
      */
     @GetMapping("/info/{id}")
     @OperationLog(name = "详情", type = OperationLogType.INFO)
-    @ApiOperation(value = "详情", response = ProductCountry.class)
-    public ApiResult<ProductCountry> getProductCountry(@PathVariable("id") Long id) throws Exception {
-        ProductCountry productCountry = productCountryService.getById(id);
-        return ApiResult.ok(productCountry);
+    @ApiOperation(value = "详情", response = Productgroup.class)
+    public ApiResult<Productgroup> getProductgroup(@PathVariable("id") Long id) throws Exception {
+        Productgroup productgroup = productgroupService.getById(id);
+        return ApiResult.ok(productgroup);
     }
 
     /**
@@ -84,9 +86,16 @@ public class ProductCountryController extends BaseController {
      */
     @PostMapping("/getPageList")
     @OperationLog(name = "分页列表", type = OperationLogType.PAGE)
-    @ApiOperation(value = "分页列表", response = ProductCountry.class)
-    public ApiResult<Paging<ProductCountry>> getProductCountryPageList(@Validated @RequestBody ProductCountryPageParam productCountryPageParam) throws Exception {
-        Paging<ProductCountry> paging = productCountryService.getProductCountryPageList(productCountryPageParam);
+    @ApiOperation(value = "分页列表", response = Productgroup.class)
+    public ApiResult<Paging<Productgroup>> getProductgroupPageList(@Validated @RequestBody ProductgroupPageParam productgroupPageParam) throws Exception {
+        Paging<Productgroup> paging = productgroupService.getProductgroupPageList(productgroupPageParam);
+        return ApiResult.ok(paging);
+    }
+    @GetMapping("/list")
+    @OperationLog(name = "分页列表", type = OperationLogType.PAGE)
+    @ApiOperation(value = "分页列表", response = Productgroup.class)
+    public ApiResult<List<Productgroup>> getProductgroupPageList() throws Exception {
+        List<Productgroup> paging = productgroupService.list();
         return ApiResult.ok(paging);
     }
 

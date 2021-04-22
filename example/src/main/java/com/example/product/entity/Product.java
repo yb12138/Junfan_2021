@@ -136,50 +136,12 @@ public class Product extends BaseEntity {
     private String supplierlink2;
 
     private String supplierlink3;
-
     @NotNull(message = "不能为空")
     private Integer deliverytime;
-
-    public Product(Productappend productappend) {
-        this.productID = productappend.getProductID();
-        this.skuCode  = productappend.getSkuCode();
-        this.cnName = productappend.getCnName();
-        this.enName = productappend.getEnName();
-        this.registeredLength = productappend.getRegisteredLength();
-        this.registeredWidth = productappend.getRegisteredWidth();
-        this.registeredHeight = productappend.getRegisteredHeight();
-        this.branded = productappend.getBranded();
-        this.brandedName = productappend.getBrandedName();
-        this.displayPageUrl = productappend.getDisplayPageUrl();
-        this.remark = productappend.getRemark();
-        this.inportDeclaredvalue = productappend.getInportDeclaredvalue();
-        this.exportDeclaredvalue = productappend.getExportDeclaredvalue();
-        this.battery = productappend.getBattery();
-        this.registeredWeight = productappend.getRegisteredWeight();
-        this.isNew = productappend.getIsNew();
-        this.warehouseID = productappend.getWarehouseID();
-        this.warehouseName = productappend.getWarehouseName();
-        this.headwayType = productappend.getHeadwayType();
-        this.productlevel = productappend.getProductlevel();
-        this.salegroupID = productappend.getSalegroupID();
-        this.salegroupName = productappend.getSalegroupName();
-        this.productgroupID = productappend.getProductgroupID();
-        this.productgroupName = productappend.getProductgroupName();
-        this.isActive = productappend.getIsActive();
-        this.isDelete = productappend.getIsDelete();
-        this.isPlus = productappend.getIsPlus();
-        this.registeredVolume = productappend.getRegisteredVolume();
-        this.imgurl = productappend.getImgurl();
-        this.cost = productappend.getCost();
-        this.mid = productappend.getMid();
-        this.mcode = productappend.getMcode();
-        this.supplierID = productappend.getSupplierID();
-        this.supplierName = productappend.getSupplierName();
-        this.supplierlink1 = productappend.getSupplierlink1();
-        this.supplierlink2 = productappend.getSupplierlink2();
-        this.supplierlink3 = productappend.getSupplierlink3();
-        this.deliverytime = productappend.getDeliverytime();
-    }
+    @TableField(exist = false)
+    private ProductSell productSell;
+    @TableField(exist = false)
+    private List<ProductCountry> countries;
 
     public Product() {
     }

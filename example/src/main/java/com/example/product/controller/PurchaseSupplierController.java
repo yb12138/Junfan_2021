@@ -1,9 +1,9 @@
 package com.example.product.controller;
 
-import com.example.product.entity.ProductCountry;
-import com.example.product.service.ProductCountryService;
+import com.example.product.entity.PurchaseSupplier;
+import com.example.product.service.PurchaseSupplierService;
 import lombok.extern.slf4j.Slf4j;
-import com.example.product.param.ProductCountryPageParam;
+import com.example.product.param.PurchaseSupplierPageParam;
 import io.geekidea.springbootplus.framework.common.controller.BaseController;
 import io.geekidea.springbootplus.framework.common.api.ApiResult;
 import io.geekidea.springbootplus.framework.core.pagination.Paging;
@@ -19,21 +19,23 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  *  控制器
  *
  * @author yb
- * @since 2021-04-05
+ * @since 2021-04-16
  */
 @Slf4j
 @RestController
-@RequestMapping("/productCountry")
+@RequestMapping("/supplier")
 @Module("product")
 @Api(value = "API", tags = {""})
-public class ProductCountryController extends BaseController {
+public class PurchaseSupplierController extends BaseController {
 
     @Autowired
-    private ProductCountryService productCountryService;
+    private PurchaseSupplierService purchaseSupplierService;
 
     /**
      * 添加
@@ -41,8 +43,8 @@ public class ProductCountryController extends BaseController {
     @PostMapping("/add")
     @OperationLog(name = "添加", type = OperationLogType.ADD)
     @ApiOperation(value = "添加", response = ApiResult.class)
-    public ApiResult<Boolean> addProductCountry(@Validated(Add.class) @RequestBody ProductCountry productCountry) throws Exception {
-        boolean flag = productCountryService.saveProductCountry(productCountry);
+    public ApiResult<Boolean> addPurchaseSupplier(@Validated(Add.class) @RequestBody PurchaseSupplier purchaseSupplier) throws Exception {
+        boolean flag = purchaseSupplierService.savePurchaseSupplier(purchaseSupplier);
         return ApiResult.result(flag);
     }
 
@@ -52,19 +54,19 @@ public class ProductCountryController extends BaseController {
     @PostMapping("/update")
     @OperationLog(name = "修改", type = OperationLogType.UPDATE)
     @ApiOperation(value = "修改", response = ApiResult.class)
-    public ApiResult<Boolean> updateProductCountry(@Validated(Update.class) @RequestBody ProductCountry productCountry) throws Exception {
-        boolean flag = productCountryService.updateProductCountry(productCountry);
+    public ApiResult<Boolean> updatePurchaseSupplier(@Validated(Update.class) @RequestBody PurchaseSupplier purchaseSupplier) throws Exception {
+        boolean flag = purchaseSupplierService.updatePurchaseSupplier(purchaseSupplier);
         return ApiResult.result(flag);
     }
 
     /**
      * 删除
      */
-    @GetMapping("/delete")
+    @PostMapping("/delete/{id}")
     @OperationLog(name = "删除", type = OperationLogType.DELETE)
     @ApiOperation(value = "删除", response = ApiResult.class)
-    public ApiResult<Boolean> deleteProductCountry(@RequestParam("productID") Long id) throws Exception {
-        boolean flag = productCountryService.deleteProductCountry(id);
+    public ApiResult<Boolean> deletePurchaseSupplier(@PathVariable("id") Long id) throws Exception {
+        boolean flag = purchaseSupplierService.deletePurchaseSupplier(id);
         return ApiResult.result(flag);
     }
 
@@ -73,10 +75,10 @@ public class ProductCountryController extends BaseController {
      */
     @GetMapping("/info/{id}")
     @OperationLog(name = "详情", type = OperationLogType.INFO)
-    @ApiOperation(value = "详情", response = ProductCountry.class)
-    public ApiResult<ProductCountry> getProductCountry(@PathVariable("id") Long id) throws Exception {
-        ProductCountry productCountry = productCountryService.getById(id);
-        return ApiResult.ok(productCountry);
+    @ApiOperation(value = "详情", response = PurchaseSupplier.class)
+    public ApiResult<PurchaseSupplier> getPurchaseSupplier(@PathVariable("id") Long id) throws Exception {
+        PurchaseSupplier purchaseSupplier = purchaseSupplierService.getById(id);
+        return ApiResult.ok(purchaseSupplier);
     }
 
     /**
@@ -84,11 +86,17 @@ public class ProductCountryController extends BaseController {
      */
     @PostMapping("/getPageList")
     @OperationLog(name = "分页列表", type = OperationLogType.PAGE)
-    @ApiOperation(value = "分页列表", response = ProductCountry.class)
-    public ApiResult<Paging<ProductCountry>> getProductCountryPageList(@Validated @RequestBody ProductCountryPageParam productCountryPageParam) throws Exception {
-        Paging<ProductCountry> paging = productCountryService.getProductCountryPageList(productCountryPageParam);
+    @ApiOperation(value = "分页列表", response = PurchaseSupplier.class)
+    public ApiResult<Paging<PurchaseSupplier>> getPurchaseSupplierPageList(@Validated @RequestBody PurchaseSupplierPageParam purchaseSupplierPageParam) throws Exception {
+        Paging<PurchaseSupplier> paging = purchaseSupplierService.getPurchaseSupplierPageList(purchaseSupplierPageParam);
         return ApiResult.ok(paging);
     }
-
+    @GetMapping("/list")
+    @OperationLog(name = "分页列表", type = OperationLogType.PAGE)
+    @ApiOperation(value = "分页列表", response = PurchaseSupplier.class)
+    public ApiResult<List<PurchaseSupplier>> getList() throws Exception {
+        List<PurchaseSupplier> paging = purchaseSupplierService.list();
+        return ApiResult.ok(paging);
+    }
 }
 

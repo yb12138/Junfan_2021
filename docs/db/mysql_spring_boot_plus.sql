@@ -17,7 +17,7 @@
 create database if not exists spring_boot_plus character set utf8mb4 COLLATE utf8mb4_general_ci;
 
 use spring_boot_plus;
-
+drop table if exists foo_bar;
 create table if not exists foo_bar
 (
     id bigint auto_increment comment 'ID'
@@ -32,7 +32,7 @@ create table if not exists foo_bar
     update_time timestamp null comment 'Update Time'
 )
     comment 'FooBar';
-
+drop table if exists example_order;
 create table if not exists example_order
 (
     id bigint auto_increment comment '主键'
@@ -46,7 +46,7 @@ create table if not exists example_order
     update_time timestamp null comment '修改时间'
 )
     comment '订单示例';
-
+drop table if exists ip_address;
 create table if not exists ip_address
 (
     id bigint auto_increment
@@ -65,7 +65,7 @@ create index ip_address_ip_end_num_index
 
 create index ip_address_ip_start_num_index
     on ip_address (ip_start_num);
-
+drop table if exists sys_department;
 create table if not exists sys_department
 (
     id bigint auto_increment comment '主键'
@@ -83,7 +83,7 @@ create table if not exists sys_department
         unique (name)
 )
     comment '部门';
-
+drop table if exists sys_permission;
 create table if not exists sys_permission
 (
     id bigint auto_increment comment '主键'
@@ -105,7 +105,7 @@ create table if not exists sys_permission
         unique (code)
 )
     comment '系统权限';
-
+drop table if exists sys_role;
 create table if not exists sys_role
 (
     id bigint auto_increment comment '主键'
@@ -122,7 +122,7 @@ create table if not exists sys_role
         unique (name)
 )
     comment '系统角色';
-
+drop table if exists sys_role_permission;
 create table if not exists sys_role_permission
 (
     id bigint auto_increment comment '主键'
@@ -142,7 +142,7 @@ create index permission_id
 
 create index role_id
     on sys_role_permission (role_id);
-
+drop table if exists sys_user;
 create table if not exists sys_user
 (
     id bigint auto_increment comment '主键'
@@ -172,7 +172,7 @@ create index department_id
 
 create index role_id
     on sys_user (role_id);
-
+drop table if exists sys_login_log;
 create table if not exists sys_login_log
 (
     id bigint(18) auto_increment comment '主键'
@@ -202,7 +202,7 @@ create table if not exists sys_login_log
     update_time datetime null comment '修改时间'
 )
     comment '系统登录日志';
-
+drop table if exists sys_operation_log;
 create table if not exists sys_operation_log
 (
     id bigint(18) auto_increment comment '主键'

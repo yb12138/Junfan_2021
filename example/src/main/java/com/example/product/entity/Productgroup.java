@@ -1,10 +1,10 @@
 package com.example.product.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import io.geekidea.springbootplus.framework.common.entity.BaseEntity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -18,39 +18,22 @@ import io.geekidea.springbootplus.framework.core.validator.groups.Update;
  * 
  *
  * @author yb
- * @since 2021-04-05
+ * @since 2021-04-16
  */
 @Data
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "ProductSell对象")
-public class ProductSell extends BaseEntity {
+@ApiModel(value = "Productgroup对象")
+public class Productgroup extends BaseEntity {
     private static final long serialVersionUID = 1L;
-    @TableId("productID")
-    private Integer productID;
 
-    private Double month1;
+    @NotNull(message = "productGroupID不能为空", groups = {Update.class})
+    @TableId(value = "productGroupID", type = IdType.AUTO)
+    private Integer productgroupid;
 
-    private Double month2;
-
-    private Double month3;
-
-    private Double month4;
-
-    private Double month5;
-
-    private Double month6;
-
-    private Double month7;
-
-    private Double month8;
-
-    private Double month9;
-
-    private Double month10;
-
-    private Double month11;
-
-    private Double month12;
+    @NotBlank(message = "产品组名称不能为空")
+    @ApiModelProperty("产品组名称")
+    @TableField("productGroupName")
+    private String productgroupname;
 
 }
